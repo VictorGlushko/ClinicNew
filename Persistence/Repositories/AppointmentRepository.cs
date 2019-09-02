@@ -51,5 +51,26 @@ namespace Clinic.Persistence.Repositories
                 .OrderBy(d => d.StartDateTime)
                 .ToList();
         }
+
+
+        public bool ValidateAppointment(DateTime appntDate, int id)
+        {
+            return _context.Appointments.Any(a => a.StartDateTime == appntDate && a.DoctorId == id);
+        }
+
+        public Appointment GetAppointment(int id)
+        {
+            return _context.Appointments.Find(id);
+        }
+
+        public int CountAppointments(int id)
+        {
+            return _context.Appointments.Count(a => a.PatientId == id);
+        }
+
+        public void Add(Appointment appointment)
+        {
+            _context.Appointments.Add(appointment);
+        }
     }
 }

@@ -471,6 +471,7 @@
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\svg-with-js.css" />
     <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\v4-shims.css" />
@@ -743,6 +744,9 @@
     <Content Include="Views\Appointments\Index.cshtml" />
     <Content Include="Views\Doctors\Details.cshtml" />
     <Content Include="Views\Appointments\Create.cshtml" />
+    <Content Include="Views\Appointments\InvalidAppointment.cshtml" />
+    <Content Include="Views\Shared\_LayoutOut.cshtml" />
+    <Content Include="Views\Appointments\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

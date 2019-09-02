@@ -37,10 +37,10 @@ namespace Clinic.Controllers
             var viewModel = new PatientDetailViewModel()
             {
                 Patient = _unitOfWork.Patients.GetPatient(id),
-                /* Appointments = _unitOfWork.Appointments.GetAppointmentWithPatient(id),
-                  Attendances = _unitOfWork.Attandences.GetAttendance(id),
+                 Appointments = _unitOfWork.Appointments.GetAppointmentWithPatient(id),
+                //  Attendances = _unitOfWork.Attandences.GetAttendance(id),
                   CountAppointments = _unitOfWork.Appointments.CountAppointments(id),
-                  CountAttendance = _unitOfWork.Attandences.CountAttendances(id)*/
+                 // CountAttendance = _unitOfWork.Attandences.CountAttendances(id)*/
             };
 
 
@@ -104,5 +104,27 @@ namespace Clinic.Controllers
             return RedirectToAction("Index", "Patients");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var patient = _unitOfWork.Patients.GetPatient(id);
+
+            var viewModel = new PatientFormViewModel
+            {
+                Heading = "Edit Patient",
+                Id = patient.Id,
+                Name = patient.Name,
+                Phone = patient.Phone,
+                Date = patient.DateTime,
+                //Date = patient.DateTime.ToString("d MMM yyyy"),
+                BirthDate = patient.BirthDate.ToString("dd/MM/yyyy"),
+                Address = patient.Address,
+                Height = patient.Height,
+                Weight = patient.Weight,
+                Sex = patient.Sex,
+                City = patient.CityId,
+                Cities = _unitOfWork.Cities.GetCities()
+            };
+            return View("PatientForm", viewModel);
+        }
     }
 }

@@ -15,6 +15,9 @@ namespace Clinic.Core.Repositories
 
         IEnumerable<Appointment> GetTodaysAppointments(int id);
 
-
+        bool ValidateAppointment(DateTime appntDate, int id);
+        Appointment GetAppointment(int id);
+        int CountAppointments(int id);
+        void Add(Appointment appointment);
     }
 }

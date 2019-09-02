@@ -21,6 +21,8 @@ namespace Clinic
              
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/clockpicker.js",
                        "~/Scripts/bootbox.min.js",
                       "~/Scripts/datatables/jquery.datatables.js",
                       "~/Scripts/datatables/datatables.bootstrap.js"));
@@ -28,11 +30,13 @@ namespace Clinic
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                        "~/Content/css/custom.css",
+                      "~/Content/bootstrap-datepicker.css",
                       "~/Content/css/morris.css",
                        "~/Content/css/animate.css",
                        "~/Content/datatables/css/datatables.bootstrap.css",
                        "~/Content/css/font-awesome.min.css",
                        "~/Content/css/select2.min.css",
+                      "~/Content/themes/base/datepicker.css",
                        "~/Content/site.css"));
         }
 
