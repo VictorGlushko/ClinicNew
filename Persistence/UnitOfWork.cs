@@ -18,6 +18,7 @@ namespace Clinic.Persistence
         public ICityRepository Cities { get; private set; }
                 
         public IDoctorRepository Doctors { get; private set; }
+        public IAttendanceRepository Attandences { get; }
         public ISpecializationRepository Specialization { get; private set; }
         public IAppointmentRepository Appointments { get; }
 
@@ -29,6 +30,7 @@ namespace Clinic.Persistence
             Appointments = new AppointmentRepository(context);
             Specialization = new SpecializationRepository(context);
             Cities      = new CityRepository(context);
+            Attandences = new AttendanceRepository(context);
         }
 
 

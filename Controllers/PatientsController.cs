@@ -40,7 +40,7 @@ namespace Clinic.Controllers
                  Appointments = _unitOfWork.Appointments.GetAppointmentWithPatient(id),
                 //  Attendances = _unitOfWork.Attandences.GetAttendance(id),
                   CountAppointments = _unitOfWork.Appointments.CountAppointments(id),
-                 // CountAttendance = _unitOfWork.Attandences.CountAttendances(id)*/
+                  CountAttendance = _unitOfWork.Attandences.CountAttendances(id)
             };
 
 

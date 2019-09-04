@@ -13,7 +13,8 @@ namespace Clinic.Core
         ICityRepository Cities { get; }
 
         IDoctorRepository Doctors { get; }
-        
+        IAttendanceRepository Attandences { get; }
+
         ISpecializationRepository Specialization { get; }
         IAppointmentRepository Appointments { get; }
 
