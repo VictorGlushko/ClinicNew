@@ -17,6 +17,7 @@ namespace Clinic.Core
 
         ISpecializationRepository Specialization { get; }
         IAppointmentRepository Appointments { get; }
+        IApplicationUserRepository Users { get; }
 
         void Complete();
     }

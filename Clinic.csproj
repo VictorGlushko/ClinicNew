@@ -231,11 +231,13 @@
     <Compile Include="Core\Repositories\IPatientRepository.cs" />
     <Compile Include="Core\Repositories\ISpecializationRepository.cs" />
     <Compile Include="Core\ViewModel\AppointmentFormViewModel.cs" />
+    <Compile Include="Core\ViewModel\AppointmentSearchVM.cs" />
     <Compile Include="Core\ViewModel\AttendanceFormViewModel.cs" />
     <Compile Include="Core\ViewModel\DoctorDetailViewModel.cs" />
     <Compile Include="Core\ViewModel\DoctorFormViewModel.cs" />
     <Compile Include="Core\ViewModel\PatientDetailViewModel.cs" />
     <Compile Include="Core\ViewModel\PatientFormViewModel.cs" />
+    <Compile Include="Core\ViewModel\UserViewModel.cs" />
     <Compile Include="Core\ViewModel\ValidDate.cs" />
     <Compile Include="Core\ViewModel\ValidTime.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,6 +267,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Persistence\Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Persistence\Repositories\AppointmentRepository.cs" />
     <Compile Include="Persistence\Repositories\AttendanceRepository.cs" />
     <Compile Include="Persistence\Repositories\CityRepository.cs" />
@@ -863,6 +866,12 @@
     <Content Include="Views\Attendances\AttendanceForm.cshtml" />
     <Content Include="Views\Reports\DaillyAppointments.cshtml" />
     <Content Include="Views\Shared\_DailyAppointments.cshtml" />
+    <Content Include="Views\Reports\Appointments.cshtml" />
+    <Content Include="Views\Shared\_Appointments.cshtml" />
+    <Content Include="Views\Reports\Attandences.cshtml" />
+    <Content Include="Views\Reports\_AttandencePartial.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

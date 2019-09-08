@@ -21,6 +21,7 @@ namespace Clinic.Persistence
         public IAttendanceRepository Attandences { get; }
         public ISpecializationRepository Specialization { get; private set; }
         public IAppointmentRepository Appointments { get; }
+        public IApplicationUserRepository Users { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -31,6 +32,7 @@ namespace Clinic.Persistence
             Specialization = new SpecializationRepository(context);
             Cities      = new CityRepository(context);
             Attandences = new AttendanceRepository(context);
+            Users = new ApplicationUserRepository(context);
         }
 
 

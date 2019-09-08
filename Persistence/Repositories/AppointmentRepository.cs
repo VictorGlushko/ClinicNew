@@ -6,6 +6,7 @@ using Clinic.Core;
 using Clinic.Core.Models;
 using System.Data.Entity;
 using Clinic.Core.Repositories;
+using Clinic.Core.ViewModel;
 
 namespace Clinic.Persistence.Repositories
 {
@@ -52,6 +53,14 @@ namespace Clinic.Persistence.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Appointment> GetDaillyAppointments(DateTime getDate)
+        {
+            return _context.Appointments.Where(a => DbFunctions.DiffDays(a.StartDateTime, getDate) == 0)
+                .Include(p => p.Patient)
+                .Include(d => d.Doctor)
+                .ToList();
+        }
+
 
         public bool ValidateAppointment(DateTime appntDate, int id)
         {
@@ -71,6 +80,33 @@ namespace Clinic.Persistence.Repositories
         public void Add(Appointment appointment)
         {
             _context.Appointments.Add(appointment);
+        }
+
+        public IQueryable<Appointment> FilterAppointments(AppointmentSearchVM searchModel)
+        {
+            var result = _context.Appointments.Include(p => p.Patient).Include(d => d.Doctor).AsQueryable();
+            if (searchModel != null)
+            {
+                if (!string.IsNullOrWhiteSpace(searchModel.Name))
+                    result = result.Where(a => a.Doctor.Name == searchModel.Name);
+                if (!string.IsNullOrWhiteSpace(searchModel.Option))
+                {
+                    if (searchModel.Option == "ThisMonth")
+                    {
+                        result = result.Where(x => x.StartDateTime.Year == DateTime.Now.Year && x.StartDateTime.Month == DateTime.Now.Month);
+                    }
+                    else if (searchModel.Option == "Pending")
+                    {
+                        result = result.Where(x => x.Status == false);
+                    }
+                    else if (searchModel.Option == "Approved")
+                    {
+                        result = result.Where(x => x.Status);
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

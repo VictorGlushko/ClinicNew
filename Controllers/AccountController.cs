@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,7 +16,7 @@ using Clinic.Core.ViewModel;
 
 namespace Clinic.Controllers
 {
-    //[Authorize]
+ 
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -534,5 +535,60 @@ namespace Clinic.Controllers
             return View("DoctorForm", viewModel);
 
         }
+
+        public ActionResult Index()
+        {
+            var usersWithRoles = _unitOfWork.Users.GetUsers();
+            return View(usersWithRoles);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = _unitOfWork.Users.GetUser(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            var viewModel = new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                IsActive = user.IsActive,
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(UserViewModel editUser)
+        {
+            if (ModelState.IsValid)
+
+            {
+                var user = _unitOfWork.Users.GetUser(editUser.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                //user.UserName = editUser.Email;
+                // user.Id = editUser.Id;
+                user.Email = editUser.Email;
+                user.IsActive = editUser.IsActive;
+                _unitOfWork.Complete();
+
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Something failed.");
+            return View(editUser);
+        }
+
     }
 }

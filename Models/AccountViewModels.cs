@@ -64,6 +64,8 @@ namespace Clinic.Models
 
     public class RegisterViewModel
     {
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +81,7 @@ namespace Clinic.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public bool? IsActive { get; set; }
     }
 
     public class ResetPasswordViewModel
